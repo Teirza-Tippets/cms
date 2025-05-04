@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'cms-contact-list',
+  selector: 'app-contact-list',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './contact-list.component.html',
-  styleUrl: './contact-list.component.css'
+  styleUrls: ['./contact-list.component.css']
 })
 export class ContactListComponent {
-  contacts = [];
+  @Input() contacts: { name: string; email: string; phone: string; imageUrl: string }[] = [];
 }
 
