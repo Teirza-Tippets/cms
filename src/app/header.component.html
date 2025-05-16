@@ -8,5 +8,15 @@
       <li><a (click)="onSelected('messages')" routerLinkActive="active">Messages</a></li>
       <li><a (click)="onSelected('contacts')" routerLinkActive="active">Contacts</a></li>
     </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown" appDropdown>
+          <a href="#" class="dropdown-toggle" role="button">User<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Other</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </li>
+    </ul>
   </div>
 </nav>
