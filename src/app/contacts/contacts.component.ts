@@ -28,5 +28,9 @@ export class ContactsComponent {
       null
     )
   ];
-  selectedContact = this.contacts[0];
+  selectedContact: Contact | null = null;
+
+  onSelectedContact(contact: Contact) {
+    this.selectedContact = contact;
+  }
 }

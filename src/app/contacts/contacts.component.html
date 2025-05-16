@@ -1,5 +1,11 @@
 <div class="container">
-    <app-contact-list [contacts]="contacts"></app-contact-list>
-    <app-contact-detail [contact]="selectedContact"></app-contact-detail>
+  <app-contact-list
+    [contacts]="contacts"
+    (selectedContactEvent)="onSelectedContact($event)">
+  </app-contact-list>
+  <app-contact-detail
+    *ngIf="selectedContact"
+    [contact]="selectedContact">
+  </app-contact-detail>
 </div>
 

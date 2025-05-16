@@ -1,12 +1,12 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" routerLink="/">WeLearn CMS</a>
+      <a class="navbar-brand" (click)="onSelected('documents')">WeLearn CMS</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a routerLink="/documents" routerLinkActive="active">Documents</a></li>
-      <li><a routerLink="/messages" routerLinkActive="active">Messages</a></li>
-      <li><a routerLink="/contacts" routerLinkActive="active">Contacts</a></li>
+      <li><a (click)="onSelected('documents')" routerLinkActive="active">Documents</a></li>
+      <li><a (click)="onSelected('messages')" routerLinkActive="active">Messages</a></li>
+      <li><a (click)="onSelected('contacts')" routerLinkActive="active">Contacts</a></li>
     </ul>
   </div>
 </nav>

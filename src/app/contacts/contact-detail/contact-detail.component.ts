@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Contact } from '../contact.model';
 
 @Component({
   selector: 'app-contact-detail',
@@ -9,5 +10,5 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./contact-detail.component.css']
 })
 export class ContactDetailComponent {
-  @Input() contact!: { name: string; email: string; phone: string; imageUrl: string };
+  @Input() contact: Contact | null = null;
 }

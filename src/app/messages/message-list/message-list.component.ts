@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MessageItemComponent } from '../message-item/message-item.component';
 import { MessageEditComponent } from '../message-edit/message-edit.component';
+import { Message } from '../message.model';
 
 @Component({
   selector: 'app-message-list',
@@ -11,8 +12,12 @@ import { MessageEditComponent } from '../message-edit/message-edit.component';
   styleUrls: ['./message-list.component.css']
 })
 export class MessageListComponent {
-  messages = [
-    { id: '1', subject: 'Hello', msgText: 'How are you?', sender: 'John' },
-    { id: '2', subject: 'Meeting', msgText: 'Let’s meet tomorrow.', sender: 'Jane' }
+  messages: Message[] = [
+    new Message('1', 'Hello', 'How are you?', 'John'),
+    new Message('2', 'Meeting', 'Let’s meet tomorrow.', 'Jane')
   ];
+
+  onAddMessage(message: Message) {
+    this.messages.push(message);
+  }
 }
