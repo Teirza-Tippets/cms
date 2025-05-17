@@ -13,7 +13,8 @@ import { ContactsComponent } from './contacts/contacts.component';
     HeaderComponent,
     DocumentsComponent,
     MessageListComponent,
-    ContactsComponent
+    ContactsComponent,
+
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
