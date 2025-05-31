@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { DocumentItemComponent } from '../document-item/document-item.component';
 import { Document } from '../document.model';
 import { DocumentService } from '../document.service';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-document-list',
   standalone: true,
-  imports: [CommonModule, DocumentItemComponent],
+  imports: [CommonModule, DocumentItemComponent, RouterModule],
   templateUrl: './document-list.component.html',
   styleUrls: ['./document-list.component.css']
 })

@@ -4,9 +4,9 @@
       <a href="#" class="navbar-brand">WeLearn CMS</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a routerLink="/documents" (click)="onSelected('documents')" routerLinkActive="active">Documents</a></li>
-      <li><a routerLink="/messages" (click)="onSelected('messages')" routerLinkActive="active">Messages</a></li>
-      <li><a routerLink="/contacts" (click)="onSelected('contacts')" routerLinkActive="active">Contacts</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/documents']">Documents</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/messages']">Messages</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/contacts']">Contacts</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown" appDropdown>
