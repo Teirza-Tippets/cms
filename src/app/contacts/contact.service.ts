@@ -28,7 +28,10 @@ export class ContactService {
     return maxId;
   }
 
-  getContacts(): Contact[] {
+  getContacts(id: any): Contact[] {
+    if (id) {
+      return this.contacts.filter(contact => contact.id === id);
+    }
     return this.contacts.slice();
   }
 

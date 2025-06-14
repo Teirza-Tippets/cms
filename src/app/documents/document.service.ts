@@ -28,7 +28,7 @@ export class DocumentService {
     return maxId;
   }
 
-  getDocuments(): Document[] {
+  getDocuments(id?: any): Document[] {
     return this.documents.slice();
   }
 
