@@ -28,8 +28,8 @@ export class DocumentService {
     return maxId;
   }
 
-  getDocuments(id?: any): Document[] {
-    return this.documents.slice();
+  getDocument(id: string): Document | null {
+    return this.documents.find(doc => doc.id === id) || null;
   }
 
   addDocument(newDocument: Document) {

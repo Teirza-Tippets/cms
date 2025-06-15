@@ -31,12 +31,12 @@ export class ContactEditComponent implements OnInit {
         this.editMode = false;
         return;
       }
-      this.originalContact = this.contactService.getContact(id);
-      if (!this.originalContact) {
+      this.contact = this.contactService.getContact(id);
+      if (!this.contact) {
         return;
       }
       this.editMode = true;
-      this.contact = JSON.parse(JSON.stringify(this.originalContact));
+      this.contact = JSON.parse(JSON.stringify(this.contact));
       if (this.contact.group) {
         this.groupContacts = JSON.parse(JSON.stringify(this.contact.group));
       }
