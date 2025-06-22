@@ -1,5 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http'; 
 import { Contact } from './contact.model';
 import { MOCKCONTACTS } from './MOCKCONTACTS';
 
@@ -12,7 +13,7 @@ export class ContactService {
   private contacts: Contact[] = [];
   private maxContactId: number;
 
-  constructor() {
+  constructor(private http: HttpClient) { 
     this.contacts = MOCKCONTACTS;
     this.maxContactId = this.getMaxId();
   }
@@ -28,19 +29,12 @@ export class ContactService {
     return maxId;
   }
 
-  getContacts(id: any): Contact[] {
-    if (id) {
-      return this.contacts.filter(contact => contact.id === id);
-    }
-    return this.contacts.slice();
-  }
-
   addContact(newContact: Contact) {
     if (!newContact) return;
     this.maxContactId++;
     newContact.id = this.maxContactId.toString();
     this.contacts.push(newContact);
-    this.contactListChangedEvent.next(this.contacts.slice());
+    this.storeContacts();
   }
 
   updateContact(originalContact: Contact, newContact: Contact) {
@@ -49,7 +43,7 @@ export class ContactService {
     if (pos < 0) return;
     newContact.id = originalContact.id;
     this.contacts[pos] = newContact;
-    this.contactListChangedEvent.next(this.contacts.slice());
+    this.storeContacts();
   }
 
   deleteContact(contact: Contact) {
@@ -57,10 +51,39 @@ export class ContactService {
     const pos = this.contacts.indexOf(contact);
     if (pos < 0) return;
     this.contacts.splice(pos, 1);
-    this.contactListChangedEvent.next(this.contacts.slice());
+    this.storeContacts();
   }
 
   getContact(id: string): Contact | null {
     return this.contacts.find(contact => contact.id === id) || null;
+  }
+
+  storeContacts() {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    this.http
+      .put(
+        'https://tippetscms-default-rtdb.firebaseio.com/contacts.json',
+        JSON.stringify(this.contacts),
+        { headers }
+      )
+      .subscribe(() => {
+        this.contactListChangedEvent.next(this.contacts.slice());
+      });
+  }
+
+  getContacts() {
+    this.http
+      .get<Contact[]>('https://tippetscms-default-rtdb.firebaseio.com/contacts.json')
+      .subscribe(
+        (contacts: Contact[]) => {
+          this.contacts = contacts || [];
+          this.maxContactId = this.getMaxId();
+          this.contacts.sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0);
+          this.contactListChangedEvent.next(this.contacts.slice());
+        },
+        (error: any) => {
+          console.error(error);
+        }
+      );
   }
 }

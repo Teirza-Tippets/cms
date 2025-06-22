@@ -13,10 +13,11 @@ import { Subscription } from 'rxjs';
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.css']
 })
-export class ContactListComponent implements OnInit, OnDestroy {
+export class ContactListComponent implements OnInit {
   @Input() contacts: Contact[] = [];
   @Output() selectedContactEvent = new EventEmitter<Contact>();
   subscription!: Subscription;
+  term: string = '';
 
   constructor(private contactService: ContactService) {}
 
@@ -34,6 +35,10 @@ export class ContactListComponent implements OnInit, OnDestroy {
 
   onSelected(contact: Contact) {
     this.contactService.contactSelectedEvent.emit(contact);
+  }
+
+  search(value: string) {
+    this.term = value;
   }
 }
 
