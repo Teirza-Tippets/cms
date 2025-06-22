@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Contact } from '../contact.model';
-import { ContactDetailComponent } from "./contact-detail.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-contact-detail',
   templateUrl: './contact-detail.component.html',
   styleUrls: ['./contact-detail.component.css'],
-  imports: [ContactDetailComponent]
+  imports: [CommonModule]
 })
 export class ContactDetailComponent {
-  contact: Contact | undefined ;
+  @Input() contact: Contact | null = null;
 }

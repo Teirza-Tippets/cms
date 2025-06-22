@@ -6,6 +6,9 @@ import { Contact } from '../contact.model';
   templateUrl: './contact-list.component.html'
 })
 export class ContactListComponent {
+search(arg0: string) {
+throw new Error('Method not implemented.');
+}
   contacts: Contact[] = [
     new Contact(
       "1", "R. Kent Jackson", "jacksonk@byui.edu", "208-496-3771",

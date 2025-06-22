@@ -13,7 +13,7 @@ import { Document } from '../document.model';
   styleUrl: './document-edit.component.css'
 })
 export class DocumentEditComponent implements OnInit {
-  originalDocument!: Document;
+  originalDocument: Document | null = null;
   document!: Document;
   editMode: boolean = false;
 
@@ -49,7 +49,7 @@ export class DocumentEditComponent implements OnInit {
       value.children
     );
     if (this.editMode) {
-      this.documentService.updateDocument(this.originalDocument, newDocument);
+      this.documentService.updateDocument(this.originalDocument!, newDocument);
     } else {
       this.documentService.addDocument(newDocument);
     }

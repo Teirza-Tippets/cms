@@ -6,7 +6,7 @@ import { ContactListComponent } from '../contact-list/contact-list.component';
 @Component({
   selector: 'app-contact-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule, ContactListComponent],
+  imports: [CommonModule, RouterModule],
   templateUrl: './contact-detail.component.html',
   styleUrls: ['./contact-detail.component.css']
 })

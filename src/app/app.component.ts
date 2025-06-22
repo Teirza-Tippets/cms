@@ -11,11 +11,8 @@ import { ContactsComponent } from './contacts/contacts.component';
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule, // <-- Add this line
-    HeaderComponent,
-    DocumentsComponent,
-    MessageListComponent,
-    ContactsComponent,
+    RouterModule,
+    HeaderComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

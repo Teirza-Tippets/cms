@@ -15,7 +15,7 @@
           <div class="glyphicon glyphicon-search input-group-addon" (click)="search(searchBox.value)"></div>
         </div>
         <div class="pull-right pad-left-right">
-          <a class="btn btn-success" [routerLink]="['new']">New Contact</a>
+          <a class="btn btn-success"  [routerLink]="['new']">New Contact</a>
         </div>
       </div>
     </div>
@@ -23,6 +23,8 @@
       <app-contact-item
         *ngFor="let contact of contacts | contactsFilter:term"
         [contact]="contact"
+        (selectedContactEvent)="onSelected($event)"
       ></app-contact-item>
+      
     </div>
 </div>
