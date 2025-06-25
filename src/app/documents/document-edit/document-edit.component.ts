@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgForm, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { DocumentService } from '../document.service'; 
+import { DocumentService } from '../document.service';
 import { Document } from '../document.model';
 
 @Component({
@@ -10,7 +10,7 @@ import { Document } from '../document.model';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './document-edit.component.html',
-  styleUrl: './document-edit.component.css'
+  styleUrl: './document-edit.component.css',
 })
 export class DocumentEditComponent implements OnInit {
   originalDocument: Document | null = null;
