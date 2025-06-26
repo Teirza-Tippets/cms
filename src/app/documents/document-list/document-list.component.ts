@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   standalone: true,
   imports: [CommonModule, DocumentItemComponent, RouterModule],
   templateUrl: './document-list.component.html',
-  styleUrls: ['./document-list.component.css']
+  styleUrls: ['./document-list.component.css'],
 })
 export class DocumentListComponent implements OnInit, OnDestroy {
   documents: Document[] = [];
@@ -21,19 +21,14 @@ export class DocumentListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.documentService.fetchDocuments(); // <-- Correct method to fetch all documents
-    this.subscription = this.documentService.documentListChangedEvent
-      .subscribe((documentsList: Document[]) => {
+    this.subscription = this.documentService.documentListChangedEvent.subscribe(
+      (documentsList: Document[]) => {
         this.documents = documentsList;
-      });
+      }
+    );
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
-  onSelectedDocument(document: Document) {
-    this.documentService.documentSelectedEvent.emit(document);
-  }
-
-  
 }

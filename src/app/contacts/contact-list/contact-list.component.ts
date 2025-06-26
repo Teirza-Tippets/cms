@@ -1,4 +1,11 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Contact } from '../contact.model';
 import { ContactService } from '../contact.service';
@@ -10,13 +17,17 @@ import { ContactsFilterPipe } from '../contacts-filter.pipe';
 @Component({
   selector: 'app-contact-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, ContactsFilterPipe, ContactItemComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ContactsFilterPipe,
+    ContactItemComponent,
+  ],
   templateUrl: './contact-list.component.html',
-  styleUrls: ['./contact-list.component.css']
+  styleUrls: ['./contact-list.component.css'],
 })
-
 export class ContactListComponent implements OnInit, OnDestroy {
-  @Input() contacts: Contact[] = [];
+  contacts: Contact[] = [];
   @Output() selectedContactEvent = new EventEmitter<Contact>();
   subscription!: Subscription;
   term: string = '';
@@ -25,10 +36,11 @@ export class ContactListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.contactService.getContacts();
-    this.subscription = this.contactService.contactListChangedEvent
-      .subscribe((contactsList: Contact[]) => {
+    this.subscription = this.contactService.contactListChangedEvent.subscribe(
+      (contactsList: Contact[]) => {
         this.contacts = contactsList;
-      });
+      }
+    );
   }
 
   ngOnDestroy() {
@@ -43,4 +55,3 @@ export class ContactListComponent implements OnInit, OnDestroy {
     this.term = value;
   }
 }
-
