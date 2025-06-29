@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Contact } from '../contact.model';
 import { RouterModule } from '@angular/router';
 @Component({
@@ -6,8 +6,13 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [RouterModule],
   templateUrl: './contact-item.component.html',
-  styleUrl: './contact-item.component.css'
+  styleUrls: ['./contact-item.component.css']
 })
 export class ContactItemComponent {
   @Input() contact!: Contact;
+  @Output() selectedContactEvent = new EventEmitter<Contact>();
+
+  onSelected() {
+    this.selectedContactEvent.emit(this.contact);
+  }
 }

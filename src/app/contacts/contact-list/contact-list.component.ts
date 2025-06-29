@@ -10,7 +10,7 @@ import { ContactsFilterPipe } from '../contacts-filter.pipe';
 @Component({
   selector: 'app-contact-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, ContactsFilterPipe, ContactItemComponent],
+  imports: [CommonModule, RouterModule, ContactItemComponent, ContactsFilterPipe],
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.css']
 })
@@ -36,7 +36,7 @@ export class ContactListComponent implements OnInit, OnDestroy {
   }
 
   onSelected(contact: Contact) {
-    this.contactService.contactSelectedEvent.emit(contact);
+    this.selectedContactEvent.emit(contact);
   }
 
   search(value: string) {

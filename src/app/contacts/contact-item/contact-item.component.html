@@ -1,4 +1,4 @@
-<a class="list-group-item clearfix" [routerLink]="[contact.id]" routerLinkActive="active">
+<a class="list-group-item clearfix" [routerLink]="[contact.id]" routerLinkActive="active" (click)="onSelected()">
         <div class="row">
           <div class="col-xs-3">
             <img [src]="contact.imageUrl" [alt]="contact.name" class="img-responsive">
