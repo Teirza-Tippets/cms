@@ -23,7 +23,6 @@ import { ContactsFilterPipe } from '../contacts-filter.pipe';
     ContactsFilterPipe,
     ContactItemComponent,
   ],
-  imports: [CommonModule, RouterModule, ContactItemComponent, ContactsFilterPipe],
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.css'],
 })
