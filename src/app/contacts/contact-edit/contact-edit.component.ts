@@ -5,6 +5,10 @@ import { CommonModule } from '@angular/common';
 import { ContactService } from '../contact.service'; // Adjust path as needed
 import { Contact } from '../contact.model';
 import { ContactItemComponent } from '../contact-item/contact-item.component'; // Adjust path as needed
+import { ContactService } from '../contact.service';
+import { Contact } from '../contact.model';
+import { ContactItemComponent } from '../contact-item/contact-item.component';
+
 
 @Component({
   selector: 'app-contact-edit',
@@ -32,8 +36,8 @@ export class ContactEditComponent implements OnInit {
         this.editMode = false;
         return;
       }
-      this.contact = this.contactService.getContact(id);
-      if (!this.contact) {
+      const foundContact = this.contactService.getContact(id);
+      if (!foundContact) {
         return;
       } else {
         this.editMode = true;
@@ -41,6 +45,12 @@ export class ContactEditComponent implements OnInit {
         if (this.contact?.group) {
           this.groupContacts = JSON.parse(JSON.stringify(this.contact.group));
         }
+      }
+      this.editMode = true;
+      this.contact = JSON.parse(JSON.stringify(foundContact));
+      if (this.contact.group) {
+        this.groupContacts = JSON.parse(JSON.stringify(this.contact.group));
+
       }
     });
   }

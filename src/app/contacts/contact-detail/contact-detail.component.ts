@@ -7,7 +7,7 @@ import { ContactService } from '../contact.service';
 @Component({
   selector: 'app-contact-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ContactListComponent],
   templateUrl: './contact-detail.component.html',
   styleUrls: ['./contact-detail.component.css'],
 })

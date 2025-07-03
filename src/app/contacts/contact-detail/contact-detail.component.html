@@ -1,3 +1,4 @@
+
 <div class="panel panel-default" *ngIf="contact">
   <div class="panel-heading clearfix">
     <h3 class="panel-title pull-left">{{ contact.name }}</h3>
@@ -16,4 +17,7 @@
     <p>Email: {{ contact.email }}</p>
     <p>Phone: {{ contact.phone }}</p>
   </div>
+<div class="container">
+  <app-contact-detail [contact]="contact"></app-contact-detail>
+
 </div>
