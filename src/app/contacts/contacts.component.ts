@@ -4,13 +4,14 @@ import { ContactService } from './contact.service';
 import { CommonModule } from '@angular/common';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { ContactDetailComponent } from './contact-detail/contact-detail.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-contacts',
   standalone: true,
-  imports: [CommonModule, ContactListComponent, ContactDetailComponent],
+  imports: [CommonModule, ContactListComponent, RouterOutlet],
   templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.css']
+  styleUrls: ['./contacts.component.css'],
 })
 export class ContactsComponent implements OnInit {
   contacts = [];

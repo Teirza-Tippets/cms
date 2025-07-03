@@ -1,6 +1,5 @@
 <div class="panel panel-default">
   <div class="panel-body">
-
     <form #f="ngForm" (ngSubmit)="onSubmit(f)">
       <div class="row">
         <div class="col-sm-12 form-group">
@@ -13,9 +12,12 @@
             required
             [ngModel]="document.name"
             #name="ngModel"
-            [ngClass]="{'is-invalid': name.invalid && (name.touched || name.dirty)}"
+            [ngClass]="{
+              'is-invalid': name.invalid && (name.touched || name.dirty)
+            }"
             size="120"
-            max="120">
+            max="120"
+          />
         </div>
       </div>
 
@@ -25,9 +27,11 @@
           <input
             type="text"
             id="description"
+            [ngModel]="document.description"
             class="form-control"
             size="120"
-            max="255">
+            max="255"
+          />
         </div>
       </div>
 
@@ -42,29 +46,36 @@
             required
             [ngModel]="document.url"
             #url="ngModel"
-            [ngClass]="{'is-invalid': url.invalid && (url.touched || url.dirty)}"
+            [ngClass]="{
+              'is-invalid': url.invalid && (url.touched || url.dirty)
+            }"
             size="150"
-            max="255">
+            max="255"
+          />
         </div>
       </div>
 
       <!-- Error Message -->
       <div
         class="alert alert-danger"
-        *ngIf="(name.invalid && (name.touched || name.dirty)) || (url.invalid && (url.touched || url.dirty))"
+        *ngIf="
+          (name.invalid && (name.touched || name.dirty)) ||
+          (url.invalid && (url.touched || url.dirty))
+        "
       >
         The Document Title and Document URL are required fields.
       </div>
 
       <div class="row">
         <div class="col-xs-12 btn-toolbar">
-          <button class="btn btn-success" type="submit" [disabled]="f.invalid">Save</button>
-          <button class="btn btn-primary" type="button" (click)="onCancel()">Cancel</button>
+          <button class="btn btn-success" type="submit" [disabled]="f.invalid">
+            Save
+          </button>
+          <button class="btn btn-primary" type="button" (click)="onCancel()">
+            Cancel
+          </button>
         </div>
       </div>
-
     </form>
-
   </div>
 </div>
-

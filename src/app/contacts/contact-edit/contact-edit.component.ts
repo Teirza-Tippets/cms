@@ -2,19 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgForm, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ContactService } from '../contact.service'; // Adjust path as needed
+import { Contact } from '../contact.model';
+import { ContactItemComponent } from '../contact-item/contact-item.component'; // Adjust path as needed
 import { ContactService } from '../contact.service';
 import { Contact } from '../contact.model';
 import { ContactItemComponent } from '../contact-item/contact-item.component';
+
 
 @Component({
   selector: 'app-contact-edit',
   standalone: true,
   imports: [CommonModule, FormsModule, ContactItemComponent],
   templateUrl: './contact-edit.component.html',
-  styleUrl: './contact-edit.component.css'
+  styleUrl: './contact-edit.component.css',
 })
 export class ContactEditComponent implements OnInit {
-  contact!: Contact;
+  contact: Contact | null = null;
   originalContact!: Contact;
   groupContacts: Contact[] = [];
   editMode: boolean = false;
@@ -35,11 +39,18 @@ export class ContactEditComponent implements OnInit {
       const foundContact = this.contactService.getContact(id);
       if (!foundContact) {
         return;
+      } else {
+        this.editMode = true;
+        this.contact = JSON.parse(JSON.stringify(this.contact));
+        if (this.contact?.group) {
+          this.groupContacts = JSON.parse(JSON.stringify(this.contact.group));
+        }
       }
       this.editMode = true;
       this.contact = JSON.parse(JSON.stringify(foundContact));
       if (this.contact.group) {
         this.groupContacts = JSON.parse(JSON.stringify(this.contact.group));
+
       }
     });
   }
@@ -47,7 +58,7 @@ export class ContactEditComponent implements OnInit {
   onSubmit(form: NgForm) {
     const value = form.value;
     const newContact = new Contact(
-      this.contact.id || '',
+      this.contact?.id || '',
       value.name,
       value.email,
       value.phone,
